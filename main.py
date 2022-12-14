@@ -63,32 +63,29 @@ class Calculadora():
         return self._result
 
     def division(self):
-        try:
-            self._result = self._portion1 / self._portion2
-            if self._result < 1:
-                self._scraps = 0
-                return self._result, self._scraps
-            self._scraps = self._portion1 % self._portion2
-            return self._result, self._scraps
-        except:
-            pass
-        else:
-            print('ok')
+        pass
 
     def division(self, portion1, portion2):
         self.portion1(portion1)
         self.portion2(portion2)
         try:
             self._result = self._portion1 / self._portion2
-            if self._result < 1:
-                self._scraps = 0
-                return self._result, self._scraps
-            self._scraps = self._portion1 % self._portion2
-            return self._result, self._scraps
-        except:
-            pass
+            if self._result > 1:
+                self._scraps = self._portion1 % self._portion2
+        except ZeroDivisionError as error:
+            return 0, 0
         else:
-            print('ok')
+            return self._result, self._scraps
+
+    def exponentiation(self):
+        self._result = self._portion1 ** self._portion2
+        return self._result
+
+    def exponentiation(self, portion1, portion2):
+        self.portion1(portion1)
+        self.portion2(portion2)
+        self._result = self._portion1 ** self._portion2
+        return self._result
 
 class Viewer():
     def __init__(self):
@@ -137,7 +134,7 @@ class Viewer():
                 print('Resultado:', result[0], ' Sobras:', result[1])
             elif control == 5:
                 calc = Calculadora()
-                print(calc.sum(input('Entre com primeiro valor:\n>>>'), input('Entre com segundo valor:\n>>>')))
+                print(calc.exponentiation(input('Entre com primeiro valor:\n>>>'), input('Entre com segundo valor:\n>>>')))
             elif control == 0:
                 self._counter = 0
             else:
