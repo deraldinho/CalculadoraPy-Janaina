@@ -45,7 +45,7 @@ class calculadora():
     def divisao(self):
         self.result = self.portion1 / self.portion2
         self.scraps = self.portion1 % self.portion2
-    
+
 
 class Viewer():
     def __init__(self):
@@ -57,6 +57,7 @@ class Viewer():
         self.counter = 1
         while self.counter > 0:
             print('Deu certo')
+            self.menu()
             self.counter = 0
 
     def home(self):
@@ -65,6 +66,10 @@ class Viewer():
     def menu(self):
         print('Menu de Operações')
         print('Escolha as seguintes opções.')
+        print('1 -> Somar')
+        print('2 -> Subtrair')
+        print('3 -> Multiplicar')
+        print('4 -> Função exponencial')
 
 
 
