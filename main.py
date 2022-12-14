@@ -4,10 +4,10 @@
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 class calculadora():
     def __init__(self):
-        self.portion1 = int
-        self.portion2 = int
-        self.scraps = float
-        self.result = float
+        self.portion1 = int()
+        self.portion2 = int()
+        self.scraps = float()
+        self.result = float()
 
     def get_portion1(self):
         return self.portion1
@@ -22,10 +22,22 @@ class calculadora():
         return self.result
 
     def set_portion1(self, portion1):
-        self.portion1 = portion1
+        try:
+            portion1 = int(portion1)
+        except ValueError:
+            return False;
+        else:
+            self.portion1 = portion1
+            return True
 
     def set_portion1(self, portion2):
-        self.portion1 = portion2
+        try:
+            portion2 = int(portion2)
+        except ValueError:
+            return False
+        else:
+            self.portion1 = portion2
+            return True
 
     def set_scraps(self, scraps):
         self.scraps = scraps
@@ -33,17 +45,19 @@ class calculadora():
     def set_total(self, result):
         self.result = result
 
-    def soma(self):
-        self.total = self.portion1 + self.portion2
+    def sum(self):
+        self.result = self.portion1 + self.portion2
 
-    def subtracao(self):
-        self.total = self.portion1 - self.portion2
+    def subtraction(self):
+        self.result = self.portion1 - self.portion2
 
-    def multiplicacao(self):
-        self.total = self.portion1 * self.portion2
+    def multiplication(self):
+        self.result = self.portion1 * self.portion2
 
-    def divisao(self):
+    def division(self):
         self.result = self.portion1 / self.portion2
+
+    def scraps(self):
         self.scraps = self.portion1 % self.portion2
 
 
@@ -65,13 +79,21 @@ class Viewer():
 
     def menu(self):
         print('Menu de Operações')
-        print('Escolha as seguintes opções.')
+        print('Escolha as seguintes opções. ')
         print('1 -> Somar')
         print('2 -> Subtrair')
         print('3 -> Multiplicar')
-        print('4 -> Função exponencial')
+        print('4 -> Divisão')
+        print('5 -> Função exponencial')
+        print('0 -> Sair')
+        int(input('>>>'))
 
-
+    def menu_division(self):
+        print('Menu de Divisão')
+        print('Escolha as seguintes opções. ')
+        print('1 -> Somar')
+        print('2 -> Subtrair')
+        int(input('>>>'))
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
