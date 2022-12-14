@@ -100,6 +100,29 @@ class Viewer():
 
     def home(self):
         self.Tittle('CalculadoraPy Janaina Lessa', 30)
+        print('calculos feitos com os ultimos numeros do RU:(9, 1)')
+        for i in range(5):
+            if i == 1:
+                calc = Calculadora()
+                result = calc.sum(9, 1)
+                print('Resultado:', result)
+            elif i == 2:
+                calc = Calculadora()
+                result = calc.subtraction(9, 1)
+                print('Resultado:', result)
+            elif i == 3:
+                calc = Calculadora()
+                result = calc.multiplication(9, 1)
+                print('Resultado:', result)
+            elif i == 4:
+                calc = Calculadora()
+                result = calc.division(9, 1)
+                print('Resultado:', result[0], ' Sobras:', result[1])
+            elif i == 5:
+                calc = Calculadora()
+                print(calc.exponentiation(9, 1))
+
+
 
     def menu(self):
         self.Tittle('Menu de Operações')
@@ -125,8 +148,7 @@ class Viewer():
                 print('Resultado:', result)
             elif control == 3:
                 calc = Calculadora()
-                result = calc.multiplication(input('Entre com primeiro valor:\n>>>'),
-                                             input('Entre com segundo valor:\n>>>'))
+                result = calc.multiplication(input('Entre com primeiro valor:\n>>>'), input('Entre com segundo valor:\n>>>'))
                 print('Resultado:', result)
             elif control == 4:
                 calc = Calculadora()
