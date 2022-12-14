@@ -27,7 +27,7 @@ class Calculadora():
     def portion2(self, portion):
         try:
             portion = int(portion)
-        except:
+        except ValueError:
             pass
         else:
             self._portion2 = portion
@@ -63,33 +63,42 @@ class Calculadora():
         return self._result
 
     def division(self):
-        self._result = self._portion1 / self._portion2
-        if self._result < 1:
-            self._scraps = 0
+        try:
+            self._result = self._portion1 / self._portion2
+            if self._result < 1:
+                self._scraps = 0
+                return self._result, self._scraps
+            self._scraps = self._portion1 % self._portion2
             return self._result, self._scraps
-        self._scraps = self._portion1 % self._portion2
-        return self._result, self._scraps
+        except:
+            pass
+        else:
+            print('ok')
 
     def division(self, portion1, portion2):
         self.portion1(portion1)
         self.portion2(portion2)
-        self._result = self._portion1 / self._portion2
-        if self._result < 1:
-            self._scraps = 0
+        try:
+            self._result = self._portion1 / self._portion2
+            if self._result < 1:
+                self._scraps = 0
+                return self._result, self._scraps
+            self._scraps = self._portion1 % self._portion2
             return self._result, self._scraps
-        self._scraps = self._portion1 % self._portion2
-        return self._result, self._scraps
-
+        except:
+            pass
+        else:
+            print('ok')
 
 class Viewer():
     def __init__(self):
-        self.counter = int
+        self._counter = 0
         self.home()
         self.loop()
 
     def loop(self):
-        self.counter = 1
-        while self.counter > 0:
+        self._counter = 1
+        while self._counter > 0:
             self.menu()
 
     def home(self):
@@ -104,31 +113,35 @@ class Viewer():
         print('4 -> Divisão')
         print('5 -> Função exponencial')
         print('0 -> Sair')
-        control = int(input('>>>'))
-        if control == 1:
-            calc = Calculadora()
-            result = calc.sum(input('Entre com primeiro valor:\n>>>'), input('Entre com segundo valor:\n>>>'))
-            print('Resultado:', result)
-        elif control == 2:
-            calc = Calculadora()
-            result = calc.subtraction(input('Entre com primeiro valor:\n>>>'), input('Entre com segundo valor:\n>>>'))
-            print('Resultado:', result)
-        elif control == 3:
-            calc = Calculadora()
-            result = calc.multiplication(input('Entre com primeiro valor:\n>>>'),
-                                         input('Entre com segundo valor:\n>>>'))
-            print('Resultado:', result)
-        elif control == 4:
-            calc = Calculadora()
-            result = calc.division(input('Entre com primeiro valor:\n>>>'), input('Entre com segundo valor:\n>>>'))
-            print('Resultado:', result[0], ' Sobras:', result[1])
-        elif control == 5:
-            calc = Calculadora()
-            print(calc.sum(input('Entre com primeiro valor:\n>>>'), input('Entre com segundo valor:\n>>>')))
-        elif control == 0:
-            self.counter = 0
+        control = input('>>>')
+        if not control.isnumeric():
+            print("Digite apenas numeros!")
         else:
-            print('opção invalida')
+            control = int(control)
+            if control == 1:
+                calc = Calculadora()
+                result = calc.sum(input('Entre com primeiro valor:\n>>>'), input('Entre com segundo valor:\n>>>'))
+                print('Resultado:', result)
+            elif control == 2:
+                calc = Calculadora()
+                result = calc.subtraction(input('Entre com primeiro valor:\n>>>'), input('Entre com segundo valor:\n>>>'))
+                print('Resultado:', result)
+            elif control == 3:
+                calc = Calculadora()
+                result = calc.multiplication(input('Entre com primeiro valor:\n>>>'),
+                                             input('Entre com segundo valor:\n>>>'))
+                print('Resultado:', result)
+            elif control == 4:
+                calc = Calculadora()
+                result = calc.division(input('Entre com primeiro valor:\n>>>'), input('Entre com segundo valor:\n>>>'))
+                print('Resultado:', result[0], ' Sobras:', result[1])
+            elif control == 5:
+                calc = Calculadora()
+                print(calc.sum(input('Entre com primeiro valor:\n>>>'), input('Entre com segundo valor:\n>>>')))
+            elif control == 0:
+                self._counter = 0
+            else:
+                print('opção invalida')
 
     def Tittle(self, texto, size=25):
         for i in range(size):
