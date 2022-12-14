@@ -9,6 +9,10 @@ class calculadora():
         self.scraps = float()
         self.result = float()
 
+    def __int__(self, portion1, portion2):
+        self.set_portion1(portion1)
+        self.set_portion2(portion2)
+
     def get_portion1(self):
         return self.portion1
 
@@ -25,12 +29,12 @@ class calculadora():
         try:
             portion1 = int(portion1)
         except ValueError:
-            return False;
+            return False
         else:
             self.portion1 = portion1
             return True
 
-    def set_portion1(self, portion2):
+    def set_portion2(self, portion2):
         try:
             portion2 = int(portion2)
         except ValueError:
@@ -94,6 +98,7 @@ class Viewer():
         print('1 -> Somar')
         print('2 -> Subtrair')
         int(input('>>>'))
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
