@@ -32,6 +32,54 @@ class Calculadora():
         else:
             self._portion2 = portion
 
+    def sum(self):
+        self._result = self._portion1 + self._portion2
+        return self._result
+
+    def sum(self, portion1, portion2):
+        self.portion1(portion1)
+        self.portion2(portion2)
+        self._result = self._portion1 + self._portion2
+        return self._result
+
+    def subtraction(self):
+        self._result = self._portion1 - self._portion2
+        return self._result
+
+    def subtraction(self, portion1, portion2):
+        self.portion1(portion1)
+        self.portion2(portion2)
+        self._result = self._portion1 - self._portion2
+        return self._result
+
+    def multiplication(self):
+        self._result = self._portion1 * self._portion2
+        return self._result
+
+    def multiplication(self, portion1, portion2):
+        self.portion1(portion1)
+        self.portion2(portion2)
+        self._result = self._portion1 * self._portion2
+        return self._result
+
+    def division(self):
+        self._result = self._portion1 / self._portion2
+        if self._result < 1:
+            self._scraps = 0
+            return self._result, self._scraps
+        self._scraps = self._portion1 % self._portion2
+        return self._result, self._scraps
+
+    def division(self, portion1, portion2):
+        self.portion1(portion1)
+        self.portion2(portion2)
+        self._result = self._portion1 / self._portion2
+        if self._result < 1:
+            self._scraps = 0
+            return self._result, self._scraps
+        self._scraps = self._portion1 % self._portion2
+        return self._result, self._scraps
+
 
 class Viewer():
     def __init__(self):
@@ -42,16 +90,14 @@ class Viewer():
     def loop(self):
         self.counter = 1
         while self.counter > 0:
-            print('Deu certo')
             self.menu()
-            self.counter = 0
 
     def home(self):
-        print('CalculadoraPy Janaina Lessa')
+        self.Tittle('CalculadoraPy Janaina Lessa', 30)
 
     def menu(self):
-        print('Menu de Operações')
-        print('Escolha as seguintes opções. ')
+        self.Tittle('Menu de Operações')
+        print('Escolha as seguintes opções.')
         print('1 -> Somar')
         print('2 -> Subtrair')
         print('3 -> Multiplicar')
@@ -61,29 +107,36 @@ class Viewer():
         control = int(input('>>>'))
         if control == 1:
             calc = Calculadora()
-            calc.portion1(input('Entre com primeiro valor:\n>>>'))
-            calc.portion2(input('Entre com segundo valor:\n>>>'))
-            print(calc.sum())
-
+            result = calc.sum(input('Entre com primeiro valor:\n>>>'), input('Entre com segundo valor:\n>>>'))
+            print('Resultado:', result)
         elif control == 2:
-            pass
+            calc = Calculadora()
+            result = calc.subtraction(input('Entre com primeiro valor:\n>>>'), input('Entre com segundo valor:\n>>>'))
+            print('Resultado:', result)
         elif control == 3:
-            pass
+            calc = Calculadora()
+            result = calc.multiplication(input('Entre com primeiro valor:\n>>>'),
+                                         input('Entre com segundo valor:\n>>>'))
+            print('Resultado:', result)
         elif control == 4:
-            pass
+            calc = Calculadora()
+            result = calc.division(input('Entre com primeiro valor:\n>>>'), input('Entre com segundo valor:\n>>>'))
+            print('Resultado:', result[0], ' Sobras:', result[1])
         elif control == 5:
-            pass
+            calc = Calculadora()
+            print(calc.sum(input('Entre com primeiro valor:\n>>>'), input('Entre com segundo valor:\n>>>')))
         elif control == 0:
-            pass
-        else:
             self.counter = 0
+        else:
+            print('opção invalida')
 
-    def menu_division(self):
-        print('Menu de Divisão')
-        print('Escolha as seguintes opções. ')
-        print('1 -> Somar')
-        print('2 -> Subtrair')
-        int(input('>>>'))
+    def Tittle(self, texto, size=25):
+        for i in range(size):
+            print('-', end='')
+        print(texto, end='')
+        for i in range(size):
+            print('-', end='')
+        print('')
 
 
 # Press the green button in the gutter to run the script.
